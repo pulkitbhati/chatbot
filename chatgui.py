@@ -27,7 +27,6 @@ def clean_up_sentence(sentence):
 # return bag of words array: 0 or 1 for each word in the bag that exists in the sentence
 
 def bow(sentence, words, show_details=True):
-    print("Requested word is : " + sentence)
     # tokenize the pattern
     sentence_words = clean_up_sentence(sentence)
     # bag of words - matrix of N words, vocabulary matrix
@@ -62,12 +61,12 @@ def getResponse(ints, intents_json,msg):
             result = random.choice(i['responses'])
             patternList = i['patterns']
             if msg in patternList :
-                print("Element is present in the list")
+                print("Element is present in the tag",i['tag'])
                 print("element present")
             else :
-                print("element is not present in the list")
-            print("Type of output is ", type(patternList))
-            print("All responses : ", patternList)
+                print("Element not present so adding to the list : ", msg)
+                GetMongoData.updateQuestions(i['tag'],msg)
+                print("element added to the list")
             break
     return result
 
