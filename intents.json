@@ -1,0 +1,45 @@
+{
+  "intents": [{
+    "tag": "greeting",
+    "patterns": ["Hi there", "How are you", "Is anyone there?", "Hey", "Hola", "Hello", "Good day"],
+    "responses": ["Hello, thanks for asking me", "Good to see you again", "Hi there, how can I help?"],
+    "context": [""]
+  },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you later", "Goodbye", "Nice chatting to you, bye", "Till next time"],
+      "responses": ["See you!", "Have a nice day", "Bye! Come back again soon."],
+      "context": [""]
+    },
+    {
+      "tag": "entity",
+      "patterns": ["Entity"],
+      "responses": ["Please refer to https://documentation.cftpay.com/cftpay-docs/v2.0.0/docs/spg-entities"],
+      "context": [""]
+    },
+    {
+      "tag": "finxera",
+      "patterns": ["What is finxera?"],
+      "responses": ["Finxera gives non-financial institutions a simple, secure way to collect, store, and send money. For more details please refer to https://finxera.com/about "],
+      "context": [""]
+    },
+    {
+      "tag": "cftpay",
+      "patterns": ["What is cftpay?","support","cftpay support"],
+      "responses": ["https://cftpay.com/","Email Us at support@cftpay.com or Call us at 1-888-348-4543 "],
+      "context": [""]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["Thanks", "Thank you", "That's helpful", "Awesome, thanks", "Thanks for helping me"],
+      "responses": ["Happy to help!", "Any time!", "My pleasure"],
+      "context": [""]
+    },
+    {
+      "tag": "noanswer",
+      "patterns": [],
+      "responses": ["Sorry, can't understand you", "Please give me more info", "Not sure I understand"],
+      "context": [""]
+    }
+  ]
+}

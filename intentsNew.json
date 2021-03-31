@@ -1,0 +1,10 @@
+{
+  "intents": [
+    {
+      "tag": "entity",
+      "patterns": ["Entity"],
+      "responses": ["Which entity documentation you need"],
+      "context": [""]
+    }
+  ]
+}
