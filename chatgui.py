@@ -3,6 +3,7 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 
 import GetMongoData
+import SendEmailUtil as emailUtil
 
 lemmatizer = WordNetLemmatizer()
 import pickle
@@ -44,16 +45,21 @@ def predict_class(sentence, model):
     # filter out predictions below a threshold
     p = bow(sentence, words,show_details=False)
     res = model.predict(np.array([p]))[0]
-    ERROR_THRESHOLD = 0.25
+    ERROR_THRESHOLD = 0.8
     results = [[i,r] for i,r in enumerate(res) if r>ERROR_THRESHOLD]
     # sort by strength of probability
     results.sort(key=lambda x: x[1], reverse=True)
     return_list = []
+    if len(results) == 0:
+        print("Unknown question found, going to send Email.")
+        emailUtil.send_email(sentence)
+        return None
     for r in results:
         return_list.append({"intent": classes[r[0]], "probability": str(r[1])})
     return return_list
 
 def getResponse(ints, intents_json,msg):
+    global intents
     tag = ints[0]['intent']
     list_of_intents = intents_json['intents']
     for i in list_of_intents:
@@ -65,15 +71,17 @@ def getResponse(ints, intents_json,msg):
                 print("element present")
             else :
                 print("Element not present so adding to the list : ", msg)
-                GetMongoData.updateQuestions(i['tag'],msg)
+                intents = GetMongoData.updateQuestions(i['tag'],msg)
                 print("element added to the list")
             break
     return result
 
 def chatbot_response(msg):
     ints = predict_class(msg, model)
-    res = getResponse(ints, intents,msg)
-
+    if ints is not None:
+        res = getResponse(ints, intents, msg)
+    else:
+        res = "Sorry, can't understand you"
     return res
 
 
