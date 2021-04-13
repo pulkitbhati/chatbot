@@ -67,4 +67,8 @@ def updateQuestions(tag,question):
             mongoDB.update_one({'intents.tag':tagNew},{"$set":{'intents.$.patterns': oldPattern}})
     finally:
         print("query executed")
+        new_data_file = mongoDB.find({}, {'_id': False})
+        new_list_cur = list(new_data_file)
+        new_intents = json.dumps(new_list_cur[0])
+        return json.loads(new_intents)
 
