@@ -1,0 +1,15 @@
+<font face="Courier" size="3">
+<pre>
+
+This is an automated message from Crossroads Financial Technologies.
+
+A new question was asked from ChatBOT. Kindly add the same for future use.
+
+Question: <b>{question}</b>
+
+Please DO NOT reply to this message. Replies are NOT monitored. Please direct any questions or issues to {supportemail}.
+
+Sincerely,
+Finxera
+</pre>
+</font>
